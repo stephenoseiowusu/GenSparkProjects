@@ -1,4 +1,5 @@
 package genspark.assignments;
+
 import genspark.assignments.section6.*;
 import reload_system.session.Session;
 
@@ -23,7 +24,7 @@ public interface Assignment {
             System.out.println(ANSI_RED + "GUI IS NOT CONNECTED!!!" + ANSI_RESET);
         }
         else {
-            //Session.sendMessage(backend.harness.dispatcher(this));
+            //Session.sendMessage(Backend.harness.dispatcher(this));
         }
     }
 }
