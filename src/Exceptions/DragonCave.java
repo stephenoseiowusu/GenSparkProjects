@@ -9,11 +9,15 @@ public class DragonCave {
                           "is greedy and hungry and will eat you on sight.",
                           "Which cave will you go into?"};
     public static void main(String []args){
-        Scanner scanner = new Scanner(System.in);
-        DragonCave dragonCave = new DragonCave();
-        for(int x = 0; x < dragonCave.intro_messages.length; x++){
-            System.out.println(dragonCave.intro_messages[x]);
+        try {
+            Scanner scanner = new Scanner(System.in);
+            DragonCave dragonCave = new DragonCave();
+            for (int x = 0; x < dragonCave.intro_messages.length; x++) {
+                System.out.println(dragonCave.intro_messages[x]);
+            }
+            int input = scanner.nextInt();
+        }catch(Exception e){
+            System.out.println("Exception: " + e.getMessage());
         }
-        int input = scanner.nextInt();
     }
 }
