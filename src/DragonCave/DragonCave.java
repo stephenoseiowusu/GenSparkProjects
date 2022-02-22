@@ -15,4 +15,7 @@ public class DragonCave {
         }
         int input = scanner.nextInt();
     }
+    public String[] getIntro_messages(){
+        return this.intro_messages;
+    }
 }

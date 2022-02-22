@@ -29,4 +29,7 @@ public class GuessTheNumber {
             System.out.println("value of play again is " + playAgain);
         }while(playAgain.equalsIgnoreCase("Y"));
     }
+    public int getRandomNumber(){
+        return new Random().nextInt(20-1) + 1;
+    }
 }
