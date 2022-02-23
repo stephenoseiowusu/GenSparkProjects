@@ -10,10 +10,11 @@ public class Hangman {
         Scanner scan = new Scanner(System.in);
         String word = hangman.getWord();
         String wordcase =  word.replaceAll("[A-Za-z]","_");
-        boolean hasWon = false;
-        while(hasWon == false){
+        Boolean hasWon = null;
+        hangman.wrongs = 0;
+        while(hasWon == null){
             String firstLine = " | --------------------";
-            hangman.wrongs = 10;
+
             String secondLine = (hangman.wrongs > 1 ? " o ":" ") + "         |";
             String thirdLine = (hangman.wrongs > 2 ? " | ":" ") + "         |";
             String fourthLine =(hangman.wrongs > 3 ? "/|\\ ":" ") + "        |";
@@ -28,9 +29,31 @@ public class Hangman {
             System.out.println("\n" + wordcase);
             System.out.println("Guess a letter ? ");
             char letter = scan.nextLine().charAt(0);
+            int index = word.indexOf(letter);
+            if(index == -1){
+                hangman.wrongs++;
+            }
+            //System.out.println("index is " + index);
+            while(index >= 0) {
+                System.out.println(index);
+                StringBuilder stringBuilder = new StringBuilder(wordcase);
+                stringBuilder.setCharAt(index,letter);
+                wordcase = stringBuilder.toString();
+                index = word.indexOf(letter, index+1);
+            }
+           if(hangman.wrongs > 4){
+               hasWon = false;
+               break;
+
+           }
 
 
-
+        }
+        if(hasWon == false){
+            System.out.println("You lost");
+        }
+        else{
+            System.out.println("You won");
         }
     }
     public String getWord(){
