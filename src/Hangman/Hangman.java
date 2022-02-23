@@ -46,6 +46,10 @@ public class Hangman {
                break;
 
            }
+           if(wordcase.equalsIgnoreCase(word)){
+               hasWon = true;
+               break;
+           }
 
 
         }
