@@ -109,7 +109,20 @@ public class HumansVsGoblins {
                       break;
                   }
                 }
-
+                System.out.println("You get to receive the loot:");
+                for(Item e : humansVsGoblins.grid[humansVsGoblins.humanX][humansVsGoblins.humanY].item){
+                    if(e instanceof  Weapon){
+                        Weapon temp = (Weapon) e;
+                        System.out.println("Weapon received is: " + temp.getWeaponName());
+                        System.out.println("Its power is: " + temp.getWeaponPower());
+                    }
+                    else if(e instanceof  Potion){
+                        Potion potion = (Potion) e;
+                        System.out.println("Potion received is: " + potion.getName());
+                        System.out.println("Its healing power is: " + potion.getHealthPoints());
+                    }
+                    humansVsGoblins.human.inventory.add(e);
+                }
 
             }
 
