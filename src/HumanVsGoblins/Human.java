@@ -17,4 +17,10 @@ public class Human {
         }
     }
 
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+    public void setInventory(ArrayList<Item> inventory){
+        this.inventory = inventory;
+    }
 }

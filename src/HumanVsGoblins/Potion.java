@@ -1,9 +1,10 @@
 package HumanVsGoblins;
 
-public class Potions {
+public class Potion extends  Item {
     public String name;
     public int healthPoints;
-    public Potions(String name, int healthPoints){
+    public Potion(String name, int healthPoints){
+        super(name);
         this.name = name;
         this.healthPoints = healthPoints;
     }
