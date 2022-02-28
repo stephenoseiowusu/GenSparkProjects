@@ -7,6 +7,7 @@ package HangmanGUI;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 
 /**
@@ -36,7 +37,7 @@ public class HangManGUI extends JFrame {
         contentPane.add(label1);
         label1.setBounds(20, 25, 120, 35);
         contentPane.add(nametextfield);
-        nametextfield.setBounds(105, 25, 205, 30);
+        nametextfield.setBounds(165, 25, 205, 30);
 
         //---- currentwordTextField ----
         currentwordTextField.setEditable(false);
@@ -75,10 +76,30 @@ public class HangManGUI extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+     /*   GuessTextBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (GuessTextBox.getText().length() >= 3 ) // limit textfield to 3 characters
+                {
+                    e.consume();
+                }
+            }
+        });*/
     }
     public static void main(String []args){
         HangManGUI hangManGUI = new HangManGUI();
         hangManGUI.initComponents();
+        hangManGUI.setVisible(true);
+        System.out.println("Testing");
+
+        hangManGUI.GuessTextBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                System.out.println("have received");
+                if (hangManGUI.GuessTextBox.getText().length() >= 3 ) // limit textfield to 3 characters
+                    e.consume();
+            }
+        });
 
     }
     public void startGame(){
