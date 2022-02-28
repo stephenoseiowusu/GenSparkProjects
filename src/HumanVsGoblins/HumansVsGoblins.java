@@ -43,21 +43,56 @@ public class HumansVsGoblins {
         while(humansVsGoblins.human.health > 0){
             for(int x = 0; x < 10; x ++){
                 for(int y = 0; y < 10; y++){
-                  if(humansVsGoblins.humanX != x && humansVsGoblins.humanY != y) {
+                  if(humansVsGoblins.humanX != x || humansVsGoblins.humanY != y) {
                       System.out.print("L");
+                  }
+                  else if(humansVsGoblins.humanX == x && humansVsGoblins.humanY == y){
+                      System.out.print("X");
                   }
                 }
                 System.out.println("\n");
             }
             System.out.println("Use w, a , s, d for navigation");
-            for(int x = 0; x < 10; x ++){
+            String choice = scan.nextLine();
+            switch(choice){
+                case "w":
+                    if(humansVsGoblins.humanX > 0 )
+                    {
+                        humansVsGoblins.humanX -=1;
+                    }
+                    break;
+                case "a":
+                    if(humansVsGoblins.humanY > 0 )
+                    {
+                        humansVsGoblins.humanY -=1;
+                    }
+                    break;
+                case "s":
+                    if(humansVsGoblins.humanX < 9 )
+                    {
+                        humansVsGoblins.humanX += 1;
+                    }
+                    break;
+                case "d":
+                    if(humansVsGoblins.humanY < 9 )
+                    {
+                        humansVsGoblins.humanY += 1;
+                    }
+                    break;
+            }
+           /* for(int x = 0; x < 10; x ++){
                 for(int y = 0; y < 10; y++){
-                    if(humansVsGoblins.humanX != x && humansVsGoblins.humanY != y) {
+                    if(humansVsGoblins.humanX != x || humansVsGoblins.humanY != y) {
                         System.out.print("L");
+                    }
+                    else if(humansVsGoblins.humanX == x && humansVsGoblins.humanY == y){
+                        System.out.print("X");
                     }
                 }
                 System.out.println("\n");
-            }
+
+            }*/
+
 
 
         }
