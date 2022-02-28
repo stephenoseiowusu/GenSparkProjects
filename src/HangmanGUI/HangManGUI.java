@@ -76,22 +76,12 @@ public class HangManGUI extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-     /*   GuessTextBox.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (GuessTextBox.getText().length() >= 3 ) // limit textfield to 3 characters
-                {
-                    e.consume();
-                }
-            }
-        });*/
     }
     public static void main(String []args){
         HangManGUI hangManGUI = new HangManGUI();
         hangManGUI.initComponents();
         hangManGUI.setVisible(true);
         System.out.println("Testing");
-
         hangManGUI.GuessTextBox.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
