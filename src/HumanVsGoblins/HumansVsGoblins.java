@@ -137,7 +137,7 @@ public class HumansVsGoblins {
                     int p_index = scan.nextInt();
                     p = humansVsGoblins.human.getCurrentPotionInventory().get(p_index);
                     humansVsGoblins.human.getCurrentPotionInventory().remove(p);
-                    humansVsGoblins.human.addHeath(p.getHealthPoints());
+                    humansVsGoblins.human.addHealth(p.getHealthPoints());
                     System.out.println("Healed human for " + p.getHealthPoints() + " current health is " + humansVsGoblins.human.getHealth());
                 }
 

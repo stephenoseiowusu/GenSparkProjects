@@ -12,7 +12,7 @@ public class Human {
         this.health = health;
         this.inventory = new ArrayList<Item>();
     }
-    public void addHeath(int amount){
+    public void addHealth(int amount){
         this.health += amount;
         if(health > 100){
             health = 100;
