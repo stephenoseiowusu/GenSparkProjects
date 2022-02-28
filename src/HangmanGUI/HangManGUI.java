@@ -4,8 +4,12 @@
 
 package HangmanGUI;
 
+import org.junit.jupiter.api.parallel.Resources;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 import javax.swing.*;
 
 /**
@@ -15,10 +19,15 @@ public class HangManGUI extends JFrame {
     public HangManGUI() {
         initComponents();
     }
-
+    public Communicator communicator;
     private void submitGuess(ActionEvent e) {
         // TODO add your code here
         System.out.println("Clicked");
+        System.out.println("Text in GuessTextBox is " + GuessTextBox.getText());
+        communicator.communicate(GuessTextBox.getText());
+    }
+    public void setCommunicator(Communicator communicator){
+        this.communicator = communicator;
     }
 
     private void initComponents() {
@@ -32,7 +41,7 @@ public class HangManGUI extends JFrame {
         label3 = new JLabel();
         submitGuessButton = new JButton();
         ResultLabel = new JLabel();
-        HangManImagePanel = new JLabel();
+        hangManImagePanel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -48,33 +57,32 @@ public class HangManGUI extends JFrame {
         //---- currentwordTextField ----
         currentwordTextField.setEditable(false);
         contentPane.add(currentwordTextField);
-        currentwordTextField.setBounds(175, 250, 205, currentwordTextField.getPreferredSize().height);
+        currentwordTextField.setBounds(185, 375, 205, currentwordTextField.getPreferredSize().height);
 
         //---- label2 ----
         label2.setText("Current Word");
         contentPane.add(label2);
-        label2.setBounds(30, 255, 105, label2.getPreferredSize().height);
+        label2.setBounds(30, 380, 105, label2.getPreferredSize().height);
 
         //---- GuessTextBox ----
         GuessTextBox.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         contentPane.add(GuessTextBox);
-        GuessTextBox.setBounds(175, 295, 205, GuessTextBox.getPreferredSize().height);
+        GuessTextBox.setBounds(185, 420, 205, GuessTextBox.getPreferredSize().height);
 
         //---- label3 ----
         label3.setText("Enter Guess");
         contentPane.add(label3);
-        label3.setBounds(30, 305, 90, label3.getPreferredSize().height);
+        label3.setBounds(30, 420, 90, label3.getPreferredSize().height);
 
         //---- submitGuessButton ----
         submitGuessButton.setText("Submit");
         submitGuessButton.addActionListener(e -> submitGuess(e));
         contentPane.add(submitGuessButton);
-        submitGuessButton.setBounds(25, 335, 150, submitGuessButton.getPreferredSize().height);
+        submitGuessButton.setBounds(25, 455, 150, submitGuessButton.getPreferredSize().height);
         contentPane.add(ResultLabel);
         ResultLabel.setBounds(185, 335, 195, 30);
-        contentPane.add(HangManImagePanel);
-        HangManImagePanel.setBounds(30, 80, 405, 160);
-
+        contentPane.add(hangManImagePanel);
+        hangManImagePanel.setBounds(30, 80, 405, 290);
         {
             // compute preferred size
             Dimension preferredSize = new Dimension();
@@ -89,28 +97,49 @@ public class HangManGUI extends JFrame {
             contentPane.setMinimumSize(preferredSize);
             contentPane.setPreferredSize(preferredSize);
         }
+
         pack();
+        GuessTextBox.setText("Enter text here:");
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
     public static void main(String []args){
+        Communicator communicator;
         HangManGUI hangManGUI = new HangManGUI();
-        hangManGUI.initComponents();
         hangManGUI.setVisible(true);
+
+
         System.out.println("Testing");
-        hangManGUI.GuessTextBox.addKeyListener(new KeyAdapter() {
+        HangMan hangMan = new HangMan();
+        hangManGUI.setImage(hangMan.wrongs);
+        communicator = new Communicator() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                System.out.println("have received");
-                if (hangManGUI.GuessTextBox.getText().length() >= 3 ) // limit textfield to 3 characters
-                    e.consume();
+            public void communicate(String s) {
+              System.out.println("S is " + s);
+              hangMan.guess((char) s.charAt(0));
+              hangManGUI.setImage(hangMan.wrongs);
             }
-        });
+        };
+        hangManGUI.setCommunicator(communicator);
+        //hangManGUI.hangManImagePanel.setIcon(new ImageIcon(get));
+
+
 
 
 
     }
+    public void setImage(int imageS){
+        imageS += 4;
+        String imageF = "/" + imageS + ".jpg";
+        try {
+            hangManImagePanel.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imageF))));
+        }catch(Exception e){
+
+        }
+
+    }
     public void startGame(){
+
 
     }
 
@@ -124,6 +153,6 @@ public class HangManGUI extends JFrame {
     private JLabel label3;
     private JButton submitGuessButton;
     private JLabel ResultLabel;
-    private JLabel HangManImagePanel;
+    private JLabel hangManImagePanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
