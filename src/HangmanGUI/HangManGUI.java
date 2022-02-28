@@ -8,6 +8,12 @@ import org.junit.jupiter.api.parallel.Resources;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javax.swing.*;
@@ -100,6 +106,7 @@ public class HangManGUI extends JFrame {
 
         pack();
         GuessTextBox.setText("Enter text here:");
+        nametextfield.setText("Enter name here:");
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -117,7 +124,15 @@ public class HangManGUI extends JFrame {
             public void communicate(String s) {
               System.out.println("S is " + s);
               hangMan.guess((char) s.charAt(0));
+              hangManGUI.currentwordTextField.setText(hangMan.o_word);
               hangManGUI.setImage(hangMan.wrongs);
+              if(hangMan.hasWon()){
+                  try {
+                      Files.write( Path.of(new File(Objects.requireNonNull(getClass().getResource("HighScore.txt")).getFile()).getPath()), "the text".getBytes(), StandardOpenOption.APPEND);
+                  }catch (IOException e) {
+                      //exception handling left as an exercise for the reader
+                  }
+              }
             }
         };
         hangManGUI.setCommunicator(communicator);

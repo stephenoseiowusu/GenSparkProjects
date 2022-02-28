@@ -8,6 +8,7 @@ public class HangMan {
     public String word = "";
     public String o_word = "";
     int wrongs = 0;
+    int score = 0;
     public HangMan(){
         this.word = getWord();
         this.o_word =  word.replaceAll("[A-Za-z]","_");
@@ -21,6 +22,7 @@ public class HangMan {
             result = -1;
         }
         while(index >= 0) {
+            score += 10;
             System.out.println(index);
             StringBuilder stringBuilder = new StringBuilder(o_word);
             stringBuilder.setCharAt(index,letter);
@@ -28,6 +30,9 @@ public class HangMan {
             index = word.indexOf(letter, index+1);
         }
         return result;
+    }
+    public boolean hasWon(){
+        return this.o_word.equalsIgnoreCase(this.word);
     }
     public String getFollowedWord(){
         return this.o_word;
