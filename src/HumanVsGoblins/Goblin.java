@@ -7,6 +7,7 @@ public class Goblin {
     public int health;
     public Goblin( int health, int power){
         this.power = power;
+        this.health = health;
     }
     public int getPower(){
         return this.power;

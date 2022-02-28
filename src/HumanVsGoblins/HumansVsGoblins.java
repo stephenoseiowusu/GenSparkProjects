@@ -95,12 +95,16 @@ public class HumansVsGoblins {
                 int index = scan.nextInt();
                 humansVsGoblins.human.setWeapon(weapons.get(index));
                 System.out.println("Battle initiated");
-                while((humansVsGoblins.human.health > 0 && goblin.getHeath() < 1) || (goblin.getHeath() > 0 && humansVsGoblins.human.health < 0)){
-                  System.out.println("Goblin attacks human for " + goblin.getPower() + " attack");
+                System.out.println("Goblin started health is : " + goblin.getHeath());
+                System.out.println("Human health is " + humansVsGoblins.human.getHealth());
+                while((humansVsGoblins.human.getHealth() > 0 && goblin.getHeath() > 0)){
+                    System.out.println("Goblin attacks human for " + goblin.getPower() + " attack");
                   humansVsGoblins.human.setHealth(humansVsGoblins.human.getHealth() - goblin.getPower());
                   System.out.println("Human attacks goblin for " + humansVsGoblins.human.getCurrentWeapon().getWeaponPower() + " attack");
                   goblin.setHealth(goblin.getHeath() - humansVsGoblins.human.getCurrentWeapon().getWeaponPower());
+                  System.out.println("Goblin health is : " + goblin.getHeath());
                   if(goblin.getHeath() < 1 || humansVsGoblins.human.getHealth() < 1){
+
                       break;
                   }
                 }
