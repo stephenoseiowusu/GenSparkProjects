@@ -5,6 +5,8 @@
 package HangmanGUI;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 /**
@@ -34,7 +36,7 @@ public class HangManGUI extends JFrame {
         contentPane.add(label1);
         label1.setBounds(20, 25, 120, 35);
         contentPane.add(nametextfield);
-        nametextfield.setBounds(165, 15, 205, 40);
+        nametextfield.setBounds(105, 25, 205, 30);
 
         //---- currentwordTextField ----
         currentwordTextField.setEditable(false);
@@ -47,9 +49,9 @@ public class HangManGUI extends JFrame {
         label2.setBounds(30, 255, 105, label2.getPreferredSize().height);
 
         //---- GuessTextBox ----
-        GuessTextBox.setText("text");
+        GuessTextBox.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         contentPane.add(GuessTextBox);
-        GuessTextBox.setBounds(180, 295, 200, GuessTextBox.getPreferredSize().height);
+        GuessTextBox.setBounds(175, 295, 205, GuessTextBox.getPreferredSize().height);
 
         //---- label3 ----
         label3.setText("Enter Guess");
@@ -73,6 +75,14 @@ public class HangManGUI extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+    }
+    public static void main(String []args){
+        HangManGUI hangManGUI = new HangManGUI();
+        hangManGUI.initComponents();
+
+    }
+    public void startGame(){
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
