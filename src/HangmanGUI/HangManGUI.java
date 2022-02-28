@@ -27,6 +27,8 @@ public class HangManGUI extends JFrame {
         label2 = new JLabel();
         GuessTextBox = new JTextField();
         label3 = new JLabel();
+        submitGuessButton = new JButton();
+        ResultLabel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -58,6 +60,13 @@ public class HangManGUI extends JFrame {
         label3.setText("Enter Guess");
         contentPane.add(label3);
         label3.setBounds(30, 305, 90, label3.getPreferredSize().height);
+
+        //---- submitGuessButton ----
+        submitGuessButton.setText("Submit");
+        contentPane.add(submitGuessButton);
+        submitGuessButton.setBounds(25, 335, 150, submitGuessButton.getPreferredSize().height);
+        contentPane.add(ResultLabel);
+        ResultLabel.setBounds(185, 335, 195, 30);
 
         {
             // compute preferred size
@@ -105,5 +114,7 @@ public class HangManGUI extends JFrame {
     private JLabel label2;
     private JTextField GuessTextBox;
     private JLabel label3;
+    private JButton submitGuessButton;
+    private JLabel ResultLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
