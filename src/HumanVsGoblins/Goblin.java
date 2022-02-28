@@ -12,7 +12,7 @@ public class Goblin {
     public int getPower(){
         return this.power;
     }
-    public int getHeath(){
+    public int getHealth(){
         return this.health;
     }
     public void setHealth(int health){
