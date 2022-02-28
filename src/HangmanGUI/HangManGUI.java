@@ -10,12 +10,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import javax.print.DocFlavor;
 import javax.swing.*;
 
 /**
@@ -128,10 +131,18 @@ public class HangManGUI extends JFrame {
               hangManGUI.setImage(hangMan.wrongs);
               if(hangMan.hasWon()){
                   try {
-                      Files.write( Path.of(new File(Objects.requireNonNull(getClass().getResource("HighScore.txt")).getFile()).getPath()), "the text".getBytes(), StandardOpenOption.APPEND);
-                  }catch (IOException e) {
+                      URL url = Objects.requireNonNull(getClass().getResource("/HighScore.txt"));
+                      Files.write( Path.of(new File(url.toURI().toString()).getPath()), "the text".getBytes(), StandardOpenOption.APPEND);
+                  }catch (IOException | URISyntaxException e) {
                       //exception handling left as an exercise for the reader
+                      e.printStackTrace();
+                      System.out.println(e.getMessage());
+                  }catch (Exception e)
+                  {
+                      e.printStackTrace();
+                      System.out.println(e.getMessage());
                   }
+                  System.out.println("Done writing to file");
               }
             }
         };
