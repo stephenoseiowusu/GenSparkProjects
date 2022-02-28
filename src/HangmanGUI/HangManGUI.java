@@ -5,9 +5,7 @@
 package HangmanGUI;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -16,6 +14,11 @@ import javax.swing.*;
 public class HangManGUI extends JFrame {
     public HangManGUI() {
         initComponents();
+    }
+
+    private void submitGuess(ActionEvent e) {
+        // TODO add your code here
+        System.out.println("Clicked");
     }
 
     private void initComponents() {
@@ -29,6 +32,7 @@ public class HangManGUI extends JFrame {
         label3 = new JLabel();
         submitGuessButton = new JButton();
         ResultLabel = new JLabel();
+        HangManImagePanel = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -63,10 +67,13 @@ public class HangManGUI extends JFrame {
 
         //---- submitGuessButton ----
         submitGuessButton.setText("Submit");
+        submitGuessButton.addActionListener(e -> submitGuess(e));
         contentPane.add(submitGuessButton);
         submitGuessButton.setBounds(25, 335, 150, submitGuessButton.getPreferredSize().height);
         contentPane.add(ResultLabel);
         ResultLabel.setBounds(185, 335, 195, 30);
+        contentPane.add(HangManImagePanel);
+        HangManImagePanel.setBounds(30, 80, 405, 160);
 
         {
             // compute preferred size
@@ -101,6 +108,7 @@ public class HangManGUI extends JFrame {
         });
 
 
+
     }
     public void startGame(){
 
@@ -116,5 +124,6 @@ public class HangManGUI extends JFrame {
     private JLabel label3;
     private JButton submitGuessButton;
     private JLabel ResultLabel;
+    private JLabel HangManImagePanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
