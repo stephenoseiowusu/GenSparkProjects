@@ -17,6 +17,9 @@ public class HumansVsGoblins {
         this.human = new Human("Joe",100);
         this.humanX = 0;
         this.humanY = 0;
+        ArrayList<Item> items = this.human.getInventory();
+        items.add(new Weapon("Sword",50));
+        this.human.setInventory(items);
         for(int x = 0; x < 10; x ++){
             for(int y = 0; y < 10; y++){
                 grid[x][y] = new Land(x,y);
@@ -80,18 +83,30 @@ public class HumansVsGoblins {
                     }
                     break;
             }
-           /* for(int x = 0; x < 10; x ++){
-                for(int y = 0; y < 10; y++){
-                    if(humansVsGoblins.humanX != x || humansVsGoblins.humanY != y) {
-                        System.out.print("L");
-                    }
-                    else if(humansVsGoblins.humanX == x && humansVsGoblins.humanY == y){
-                        System.out.print("X");
-                    }
+            if(humansVsGoblins.grid[humansVsGoblins.humanX][humansVsGoblins.humanY].hasGoblin){
+                System.out.println("battle iniatiated");
+                Goblin goblin = new Goblin(100, ThreadLocalRandom.current().nextInt(1, 10));
+                System.out.println("Choose your weapon:");
+                ArrayList<Weapon> weapons = humansVsGoblins.human.getCurrentWeaponInventory();
+                for(int index = 0; index < weapons.size();index++){
+                    System.out.println(index + ": " + weapons.get(index).getWeaponName()  + " power:" + weapons.get(index ).getWeaponPower());
                 }
-                System.out.println("\n");
+                System.out.println(" Weapon Choice: ");
+                int index = scan.nextInt();
+                humansVsGoblins.human.setWeapon(weapons.get(index));
+                System.out.println("Battle initiated");
+                while((humansVsGoblins.human.health > 0 && goblin.getHeath() < 1) || (goblin.getHeath() > 0 && humansVsGoblins.human.health < 0)){
+                  System.out.println("Goblin attacks human for " + goblin.getPower() + " attack");
+                  humansVsGoblins.human.setHealth(humansVsGoblins.human.getHealth() - goblin.getPower());
+                  System.out.println("Human attacks goblin for " + humansVsGoblins.human.getCurrentWeapon().getWeaponPower() + " attack");
+                  goblin.setHealth(goblin.getHeath() - humansVsGoblins.human.getCurrentWeapon().getWeaponPower());
+                  if(goblin.getHeath() < 1 || humansVsGoblins.human.getHealth() < 1){
+                      break;
+                  }
+                }
 
-            }*/
+
+            }
 
 
 

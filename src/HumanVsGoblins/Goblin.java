@@ -8,6 +8,9 @@ public class Goblin {
     public Goblin( int health, int power){
         this.power = power;
     }
+    public int getPower(){
+        return this.power;
+    }
     public int getHeath(){
         return this.health;
     }
