@@ -123,6 +123,23 @@ public class HumansVsGoblins {
                     }
                     humansVsGoblins.human.inventory.add(e);
                 }
+                System.out.println("Would you like to use a potion (Y/N) ?");
+                String answer = scan.nextLine();
+                answer = scan.nextLine();
+                if(answer.equalsIgnoreCase("Y")){
+                    Potion p;
+                    for(int x = 0; x < humansVsGoblins.human.getCurrentPotionInventory().size(); x++)
+                    {
+                        p = humansVsGoblins.human.getCurrentPotionInventory().get(x);
+                        System.out.println("index: " + x + "Potion name is " + p.getName() + ", its healing power is " + p.getHealthPoints());
+                    }
+                    System.out.println("Must choose potion: ");
+                    int p_index = scan.nextInt();
+                    p = humansVsGoblins.human.getCurrentPotionInventory().get(p_index);
+                    humansVsGoblins.human.getCurrentPotionInventory().remove(p);
+                    humansVsGoblins.human.addHeath(p.getHealthPoints());
+                    System.out.println("Healed human for " + p.getHealthPoints() + " current health is " + humansVsGoblins.human.getHealth());
+                }
 
             }
 

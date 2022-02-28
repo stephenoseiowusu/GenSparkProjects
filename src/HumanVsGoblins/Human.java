@@ -33,6 +33,15 @@ public class Human {
         }
         return w;
     }
+    public ArrayList<Potion> getCurrentPotionInventory(){
+        ArrayList<Potion> potions = new ArrayList<>();
+        for(Item i: inventory){
+            if(i instanceof  Potion){
+                potions.add((Potion) i);
+            }
+        }
+        return potions;
+    }
     public Weapon getCurrentWeapon(){
         return this.current_weapon;
     }
